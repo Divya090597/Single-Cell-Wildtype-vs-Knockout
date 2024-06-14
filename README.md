@@ -1,5 +1,6 @@
 # Single-Cell
-Single_cell
+
+**--------------------------**Seurat Clustering**---------------------------------**
 
 **Step 1: Read and Prepare Data**
 Read the scRNA-seq data files for both wild-type (WT) and knockout (KO) samples. This includes barcode, feature, and matrix files. The files are then renamed to match the format expected by the Read10X function.
@@ -14,6 +15,16 @@ min.features: Minimum number of genes expressed in a cell for it to be included.
 
 **Step 3: Quality Control**
 Calculate quality control metrics, visualize them using violin plots, and filter out low-quality cells.
+# Filter out low quality cells and genes and normalize the data
+# Calculate mitochondrial QC metrics
+
+#### QC metrics: "nfeature_RNA", "nCount_RNA", "percent.mt"
+
+# Low quality cells or empty droplets often have very few genes
+# Cell doublets or multiplets have high values of nfeature_RNA & nCount_RNA
+# Low quality cells often have high percentage of mitochondrial genes
+
+# The [[ operator can add columns to object metadata. This is a great place to stash QC stats
 PercentageFeatureSet: Computes the percentage of mitochondrial gene expression, which is a common QC metric.
 VlnPlot: Creates violin plots to visualize the distribution of QC metrics.
 FeatureScatter: Creates scatter plots to visualize relationships between QC metrics.
@@ -75,13 +86,27 @@ DimPlot: Visualizes the clusters in a 2D space.
 ![CD36KO_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/c8a039dd-12fb-4a07-b17e-51bb74dee2c8)
 ![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 
-**Step 10: Integrate Data**
+**Step 10: Finding differentially expressed features (cluster biomarkers)**
+<img width="367" alt="Vlnplot_features_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/2e486d51-00de-4c68-b26b-de5077b00f96">
+<img width="367" alt="Vln_features_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5f030bd7-8454-4444-bbf8-795dce5548d8">
+
+**Step 10: Merging the Seurat objects**
+# STANDARD PREPROCESSING WORKFLOW
+<img width="462" alt="MD_Vln variablefeatureplot" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5433d0bc-3c3d-4e6d-b6c8-b75504b42d5d">
+
+![MD_PCA2](https://github.com/Divya090597/Single-Cell/assets/156469276/aefc99f0-8d08-433f-ac9b-ea7358e1aa7c)
+![MD_PCA1](https://github.com/Divya090597/Single-Cell/assets/156469276/3e64be7c-3f0e-46b3-a252-315d07892622)
+![,M_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/d98bd49b-5505-46db-b725-27010a8e3264)
+
+<img width="462" alt="tsne_MD" src="https://github.com/Divya090597/Single-Cell/assets/156469276/28621fd5-d096-4caf-9ac1-1159c2aafc8c">
+
+**Step 11: Integrate Data**
 Integrate the KO and WT datasets for combined analysis.
 SelectIntegrationFeatures: Identifies features to be used for integration.
 FindIntegrationAnchors: Finds anchor points between datasets.
 IntegrateData: Integrates multiple Seurat objects into a single object.
 
-**Step 11:** 
+**Step 12:** 
 DefaultAssay: Sets the default assay.
 ScaleData: Scales the integrated data.
 RunPCA: Performs PCA on the integrated data.
@@ -91,11 +116,13 @@ RunUMAP: Conducts UMAP on the integrated data.
 DimPlot: Visualizes clusters in UMAP space.
 ![Int_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/b76b0d6c-5e6f-4a7c-bae4-f72e7694503d)
 
-
 **Step 12: Differential Expression on Integrated Data**
 Perform differential expression analysis to identify genes differentially expressed between conditions.
 FindMarkers: Identifies differentially expressed genes between specified conditions or clusters.
 ![Feature plot integrated data](https://github.com/Divya090597/Single-Cell/assets/156469276/9a94a9a3-0b77-4b0d-838e-430d37642b74)
+
+**-----------------------------**Single R:**---------------------------------------**
+
 
 
 
