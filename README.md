@@ -121,6 +121,18 @@ FindMarkers: Identifies differentially expressed genes between specified conditi
 ![Feature plot integrated data](https://github.com/Divya090597/Single-Cell/assets/156469276/9a94a9a3-0b77-4b0d-838e-430d37642b74)
 
 **-----------------------------**Single R:**---------------------------------------**
+ **Annotation Diagnostics**
+These steps involve evaluating the quality of the SingleR annotations. SingleR assigns cell types to individual cells based on reference datasets.
+1. Based on Scores within Cells
+    Access the scores assigned by SingleR for each cell. Each cell has scores indicating the similarity to each reference cell type. Higher scores indicate a higher similarity.
+
+![Score_Dgns](https://github.com/Divya090597/Single-Cell/assets/156469276/d2bc5b86-27f2-49f3-87bd-3cb04244f7b7)
+
+2. Based on Deltas Across Cells
+   SingleR uses deltas, which represent the difference between the highest score and the second-highest score for each cell. This metric helps in assessing the confidence of the cell type assignment.
+
+![Deltas_Dgns](https://github.com/Divya090597/Single-Cell/assets/156469276/b4bf74f0-8051-4a3a-b1ed-0ae9a39c0e46)
+
 
 
 
