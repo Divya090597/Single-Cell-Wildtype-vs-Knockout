@@ -1,6 +1,6 @@
 # Single-Cell
 
-**--------------------------**Seurat Clustering**---------------------------------**
+#--------------------------**Seurat Clustering**---------------------------------
 
 **Step 1: Read and Prepare Data**
 Read the scRNA-seq data files for both wild-type (WT) and knockout (KO) samples. This includes barcode, feature, and matrix files. The files are then renamed to match the format expected by the Read10X function.
@@ -89,12 +89,14 @@ DimPlot: Visualizes the clusters in a 2D space.
 <img width="367" alt="Vlnplot_features_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/2e486d51-00de-4c68-b26b-de5077b00f96">
 <img width="367" alt="Vln_features_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5f030bd7-8454-4444-bbf8-795dce5548d8">
 
-**Step 10: Merging the Seurat objects**
-# STANDARD PREPROCESSING WORKFLOW
+#Step 10: Merging the Seurat objects
+**STANDARD PREPROCESSING WORKFLOW**
 <img width="462" alt="MD_Vln variablefeatureplot" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5433d0bc-3c3d-4e6d-b6c8-b75504b42d5d">
 
 ![MD_PCA2](https://github.com/Divya090597/Single-Cell/assets/156469276/aefc99f0-8d08-433f-ac9b-ea7358e1aa7c)
 ![MD_PCA1](https://github.com/Divya090597/Single-Cell/assets/156469276/3e64be7c-3f0e-46b3-a252-315d07892622)
+<img width="462" alt="Elbow_MD" src="https://github.com/Divya090597/Single-Cell/assets/156469276/c22303b2-aabd-4fcb-b994-3790914bd29d">
+
 ![,M_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/d98bd49b-5505-46db-b725-27010a8e3264)
 
 <img width="462" alt="tsne_MD" src="https://github.com/Divya090597/Single-Cell/assets/156469276/28621fd5-d096-4caf-9ac1-1159c2aafc8c">
@@ -113,6 +115,8 @@ FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
 FindClusters: Identifies clusters on the integrated data.
 RunUMAP: Conducts UMAP on the integrated data.
 DimPlot: Visualizes clusters in UMAP space.
+<img width="367" alt="Elbow_ID" src="https://github.com/Divya090597/Single-Cell/assets/156469276/74982062-16d0-46e7-821c-602f488b27f6">
+
 ![Int_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/b76b0d6c-5e6f-4a7c-bae4-f72e7694503d)
 
 **Step 12: Differential Expression on Integrated Data**
