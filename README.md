@@ -15,16 +15,15 @@ min.features: Minimum number of genes expressed in a cell for it to be included.
 
 **Step 3: Quality Control**
 Calculate quality control metrics, visualize them using violin plots, and filter out low-quality cells.
-# Filter out low quality cells and genes and normalize the data
-# Calculate mitochondrial QC metrics
+Filter out low quality cells and genes and normalize the data
+ Calculate mitochondrial QC metrics
+ QC metrics: "nfeature_RNA", "nCount_RNA", "percent.mt"
 
-#### QC metrics: "nfeature_RNA", "nCount_RNA", "percent.mt"
+Low quality cells or empty droplets often have very few genes
+Cell doublets or multiplets have high values of nfeature_RNA & nCount_RNA
+Low quality cells often have high percentage of mitochondrial genes
 
-# Low quality cells or empty droplets often have very few genes
-# Cell doublets or multiplets have high values of nfeature_RNA & nCount_RNA
-# Low quality cells often have high percentage of mitochondrial genes
-
-# The [[ operator can add columns to object metadata. This is a great place to stash QC stats
+The [[ operator can add columns to object metadata. This is a great place to stash QC stats
 PercentageFeatureSet: Computes the percentage of mitochondrial gene expression, which is a common QC metric.
 VlnPlot: Creates violin plots to visualize the distribution of QC metrics.
 FeatureScatter: Creates scatter plots to visualize relationships between QC metrics.
