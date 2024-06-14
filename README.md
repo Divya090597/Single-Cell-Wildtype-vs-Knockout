@@ -75,6 +75,32 @@ DimPlot: Visualizes the clusters in a 2D space.
 ![CD36KO_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/c8a039dd-12fb-4a07-b17e-51bb74dee2c8)
 ![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 
+**Step 10: Integrate Data**
+Integrate the KO and WT datasets for combined analysis.
+SelectIntegrationFeatures: Identifies features to be used for integration.
+FindIntegrationAnchors: Finds anchor points between datasets.
+IntegrateData: Integrates multiple Seurat objects into a single object.
+
+**Step 11:** 
+DefaultAssay: Sets the default assay.
+ScaleData: Scales the integrated data.
+RunPCA: Performs PCA on the integrated data.
+FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
+FindClusters: Identifies clusters on the integrated data.
+RunUMAP: Conducts UMAP on the integrated data.
+DimPlot: Visualizes clusters in UMAP space.
+![Int_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/b76b0d6c-5e6f-4a7c-bae4-f72e7694503d)
+
+
+**Step 12: Differential Expression on Integrated Data**
+Perform differential expression analysis to identify genes differentially expressed between conditions.
+FindMarkers: Identifies differentially expressed genes between specified conditions or clusters.
+![Feature plot integrated data](https://github.com/Divya090597/Single-Cell/assets/156469276/9a94a9a3-0b77-4b0d-838e-430d37642b74)
+
+
+
+
+
 
 
 
