@@ -89,7 +89,7 @@ DimPlot: Visualizes the clusters in a 2D space.
 <img width="367" alt="Vlnplot_features_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/2e486d51-00de-4c68-b26b-de5077b00f96">
 <img width="367" alt="Vln_features_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5f030bd7-8454-4444-bbf8-795dce5548d8">
 
-#Step 10: Merging the Seurat objects
+# Step 10: Merging the Seurat Odjects
 **STANDARD PREPROCESSING WORKFLOW**
 <img width="462" alt="MD_Vln variablefeatureplot" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5433d0bc-3c3d-4e6d-b6c8-b75504b42d5d">
 
@@ -101,18 +101,18 @@ DimPlot: Visualizes the clusters in a 2D space.
 
 <img width="462" alt="tsne_MD" src="https://github.com/Divya090597/Single-Cell/assets/156469276/28621fd5-d096-4caf-9ac1-1159c2aafc8c">
 
-**Step 11: Integrate Data**
+# Step 11 : Integration
 Integrate the KO and WT datasets for combined analysis.
 SelectIntegrationFeatures: Identifies features to be used for integration.
 FindIntegrationAnchors: Finds anchor points between datasets.
 IntegrateData: Integrates multiple Seurat objects into a single object.
 
 **Step 12:** 
-DefaultAssay: Sets the default assay.
-ScaleData: Scales the integrated data.
-RunPCA: Performs PCA on the integrated data.
-FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
-FindClusters: Identifies clusters on the integrated data.
+1.DefaultAssay: Sets the default assay.
+2.ScaleData: Scales the integrated data.
+3.RunPCA: Performs PCA on the integrated data.
+4.FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
+5.FindClusters: Identifies clusters on the integrated data.
 RunUMAP: Conducts UMAP on the integrated data.
 DimPlot: Visualizes clusters in UMAP space.
 <img width="367" alt="Elbow_ID" src="https://github.com/Divya090597/Single-Cell/assets/156469276/74982062-16d0-46e7-821c-602f488b27f6">
