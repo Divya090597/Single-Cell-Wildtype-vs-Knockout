@@ -72,9 +72,8 @@ FindClusters: Identifies clusters of cells.
 resolution = 0.5: Determines the granularity of the clustering.
 RunUMAP: Conducts Uniform Manifold Approximation and Projection (UMAP) for visualization.
 DimPlot: Visualizes the clusters in a 2D space.
-![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 ![CD36KO_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/c8a039dd-12fb-4a07-b17e-51bb74dee2c8)
-
+![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 
 
 
