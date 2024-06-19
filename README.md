@@ -3,30 +3,37 @@
 #--------------------------**Seurat Clustering**---------------------------------
 
 **Step 1: Read and Prepare Data**
-Read the scRNA-seq data files for both wild-type (WT) and knockout (KO) samples. This includes barcode, feature, and matrix files. The files are then renamed to match the format expected by the Read10X function.
+   
+      ~ Read the scRNA-seq data files for both wild-type (WT) and knockout (KO) samples. 
+   
+      ~ This includes barcode, feature, and matrix files. 
+   
+      ~ The files are then renamed to match the format expected by the Read10X function.
 
 **Step 2: Create Seurat Objects**
-Create Seurat objects for the KO and WT data. Seurat objects are used to store both the expression data and associated metadata.
-CreateSeuratObject: Initializes a Seurat object. Parameters:
-counts: Raw gene expression data.
-project: Name for the project.
-min.cells: Minimum number of cells expressing a gene for it to be included.
-min.features: Minimum number of genes expressed in a cell for it to be included.
+
+     Create Seurat objects for the KO and WT data. Seurat objects are used to store both the expression data and associated 
+     metadata.
+     CreateSeuratObject: Initializes a Seurat object. Parameters:
+     counts: Raw gene expression data.
+     project: Name for the project.
+     min.cells: Minimum number of cells expressing a gene for it to be included.
+     min.features: Minimum number of genes expressed in a cell for it to be included.
 
 **Step 3: Quality Control**
-Calculate quality control metrics, visualize them using violin plots, and filter out low-quality cells.
-Filter out low quality cells and genes and normalize the data
- Calculate mitochondrial QC metrics
- QC metrics: "nfeature_RNA", "nCount_RNA", "percent.mt"
 
-Low quality cells or empty droplets often have very few genes
-Cell doublets or multiplets have high values of nfeature_RNA & nCount_RNA
-Low quality cells often have high percentage of mitochondrial genes
+     Calculate quality control metrics, visualize them using violin plots, and filter out low-quality cells.
+     Filter out low quality cells and genes and normalize the data
+     Calculate mitochondrial QC metrics
+      QC metrics: "nfeature_RNA", "nCount_RNA", "percent.mt"
+     Low quality cells or empty droplets often have very few genes
+     Cell doublets or multiplets have high values of nfeature_RNA & nCount_RNA
+     Low quality cells often have high percentage of mitochondrial genes
 
-The [[ operator can add columns to object metadata. This is a great place to stash QC stats
-PercentageFeatureSet: Computes the percentage of mitochondrial gene expression, which is a common QC metric.
-VlnPlot: Creates violin plots to visualize the distribution of QC metrics.
-FeatureScatter: Creates scatter plots to visualize relationships between QC metrics.
+     The [[ operator can add columns to object metadata. This is a great place to stash QC stats
+     PercentageFeatureSet: Computes the percentage of mitochondrial gene expression, which is a common QC metric.
+     VlnPlot: Creates violin plots to visualize the distribution of QC metrics.
+     FeatureScatter: Creates scatter plots to visualize relationships between QC metrics.
 
 <img width="367" alt="Cd36_wt QC metrics" src="https://github.com/Divya090597/Single-Cell/assets/156469276/34f9e3de-f9a2-4522-a3e9-6bbdd4c151e5">
 
@@ -38,28 +45,32 @@ FeatureScatter: Creates scatter plots to visualize relationships between QC metr
 
 
 **Step 4: Data Normalization**
-Normalize the data to account for differences in sequencing depth across cells.
-NormalizeData: Normalizes the expression data.
-normalization.method = "LogNormalize": Normalizes gene expression values by log-transformation.
-scale.factor = 10000: Scaling factor for normalization.
+
+    Normalize the data to account for differences in sequencing depth across cells.
+    NormalizeData: Normalizes the expression data.
+    normalization.method = "LogNormalize": Normalizes gene expression values by log-transformation.
+    scale.factor = 10000: Scaling factor for normalization.
 
 **Step 5: Identify Highly Variable Features**
-Identify the most variable genes, which are likely to be biologically significant.
-FindVariableFeatures: Identifies highly variable genes.
-selection.method = "vst": Variance Stabilizing Transformation method.
-nfeatures = 2000: Number of variable genes to identify.
+
+    Identify the most variable genes, which are likely to be biologically significant.
+    FindVariableFeatures: Identifies highly variable genes.
+    selection.method = "vst": Variance Stabilizing Transformation method.
+    nfeatures = 2000: Number of variable genes to identify.
 
 <img width="367" alt="Variable features_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/973b6f58-2d54-4dca-9739-7c78fa088e67">
 <img width="367" alt="Variable features_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/314de807-b9ff-411b-86a1-7b8ee58cfedc">
 
 
 **Step 6: Scaling the Data**
-Scale the data to ensure that each gene has a mean of zero and variance of one.
-ScaleData: Centers and scales the data for each gene.
-features = all.genes: Scales all genes in the dataset.
+
+     Scale the data to ensure that each gene has a mean of zero and variance of one.
+     ScaleData: Centers and scales the data for each gene.
+     features = all.genes: Scales all genes in the dataset.
 
 **Step 7: PCA for Dimensionality Reduction**
-Perform Principal Component Analysis (PCA) to reduce dimensionality and identify major sources of variation.
+
+     Perform Principal Component Analysis (PCA) to reduce dimensionality and identify major sources of variation.
 
 <img width="367" alt="PCA_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/b8ab520a-4746-4bba-a42e-76b3f9201a9b">
 <img width="367" alt="PCA_wt Dimplot" src="https://github.com/Divya090597/Single-Cell/assets/156469276/7921e74d-8af3-4c27-a39d-72c8235e373f">
@@ -67,21 +78,23 @@ Perform Principal Component Analysis (PCA) to reduce dimensionality and identify
 <img width="367" alt="PCA_ko Dimplot" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5a044b4d-25ca-4710-b24e-e75780cc4bb7">
 
 **Step 8: Determine the Dimensionality**
-Use ElbowPlot to determine the appropriate number of principal components (PCs) to retain for downstream analyses.
-ElbowPlot: Helps in choosing the number of significant PCs by plotting the variance explained by each PC.
+
+    Use ElbowPlot to determine the appropriate number of principal components (PCs) to retain for downstream analyses.
+    ElbowPlot: Helps in choosing the number of significant PCs by plotting the variance explained by each PC.
 
 <img width="367" alt="Elbowplot_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/29bc490b-31bd-46ec-9b58-82f7bb9ed48c">
 <img width="367" alt="Elbowplot_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/297321f8-36b1-4b75-9190-2c0f4da89974">
 
 
 **Step 9: Clustering the Cells**
-Cluster the cells based on PCA scores and visualize the clusters using UMAP.
-FindNeighbors: Computes a k-nearest neighbors graph.
-dims = 1:10: Uses the first 10 PCs.
-FindClusters: Identifies clusters of cells.
-resolution = 0.5: Determines the granularity of the clustering.
-RunUMAP: Conducts Uniform Manifold Approximation and Projection (UMAP) for visualization.
-DimPlot: Visualizes the clusters in a 2D space.
+
+    Cluster the cells based on PCA scores and visualize the clusters using UMAP.
+    FindNeighbors: Computes a k-nearest neighbors graph.
+    dims = 1:10: Uses the first 10 PCs.
+    FindClusters: Identifies clusters of cells.
+    resolution = 0.5: Determines the granularity of the clustering.
+    RunUMAP: Conducts Uniform Manifold Approximation and Projection (UMAP) for visualization.
+    DimPlot: Visualizes the clusters in a 2D space.
 ![CD36KO_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/c8a039dd-12fb-4a07-b17e-51bb74dee2c8)
 ![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 
@@ -102,30 +115,34 @@ DimPlot: Visualizes the clusters in a 2D space.
 <img width="462" alt="tsne_MD" src="https://github.com/Divya090597/Single-Cell/assets/156469276/28621fd5-d096-4caf-9ac1-1159c2aafc8c">
 
 # Step 11 : Integration
-Integrate the KO and WT datasets for combined analysis.
-SelectIntegrationFeatures: Identifies features to be used for integration.
-FindIntegrationAnchors: Finds anchor points between datasets.
-IntegrateData: Integrates multiple Seurat objects into a single object.
+
+    Integrate the KO and WT datasets for combined analysis.
+    SelectIntegrationFeatures: Identifies features to be used for integration.
+    FindIntegrationAnchors: Finds anchor points between datasets.
+    IntegrateData: Integrates multiple Seurat objects into a single object.
 
 **Step 12:** 
-1.DefaultAssay: Sets the default assay.
-2.ScaleData: Scales the integrated data.
-3.RunPCA: Performs PCA on the integrated data.
-4.FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
-5.FindClusters: Identifies clusters on the integrated data.
-RunUMAP: Conducts UMAP on the integrated data.
-DimPlot: Visualizes clusters in UMAP space.
+
+    1.DefaultAssay: Sets the default assay.
+    2.ScaleData: Scales the integrated data.
+    3.RunPCA: Performs PCA on the integrated data.
+    4.FindNeighbors: Computes a k-nearest neighbors graph on the integrated data.
+    5.FindClusters: Identifies clusters on the integrated data.
+    RunUMAP: Conducts UMAP on the integrated data.
+    DimPlot: Visualizes clusters in UMAP space.
 <img width="367" alt="Elbow_ID" src="https://github.com/Divya090597/Single-Cell/assets/156469276/74982062-16d0-46e7-821c-602f488b27f6">
 
 ![Int_UMAP](https://github.com/Divya090597/Single-Cell/assets/156469276/b76b0d6c-5e6f-4a7c-bae4-f72e7694503d)
 
 **Step 12: Differential Expression on Integrated Data**
-Perform differential expression analysis to identify genes differentially expressed between conditions.
-FindMarkers: Identifies differentially expressed genes between specified conditions or clusters.
+
+    Perform differential expression analysis to identify genes differentially expressed between conditions.
+    FindMarkers: Identifies differentially expressed genes between specified conditions or clusters.
 ![Feature plot integrated data](https://github.com/Divya090597/Single-Cell/assets/156469276/9a94a9a3-0b77-4b0d-838e-430d37642b74)
 
 **-----------------------------**Single R:**---------------------------------------**
  **Annotation Diagnostics**
+ 
 These steps involve evaluating the quality of the SingleR annotations. SingleR assigns cell types to individual cells based on reference datasets.
 1. Based on Scores within Cells
     Access the scores assigned by SingleR for each cell. Each cell has scores indicating the similarity to each reference cell type. Higher scores indicate a higher similarity.
