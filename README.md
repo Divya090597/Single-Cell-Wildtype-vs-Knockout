@@ -155,8 +155,11 @@ These steps involve evaluating the quality of the SingleR annotations. SingleR a
 ![Deltas_Dgns](https://github.com/Divya090597/Single-Cell/assets/156469276/b4bf74f0-8051-4a3a-b1ed-0ae9a39c0e46)
 
 # Pseudo-Bulk
+
  Create pseudo-bulk samples by aggregating expression profiles for downstream bulk RNA-seq style analyses.
+ 
  Save the counts data and metadata to files.
+ 
  These files can be used for further pseudo-bulk analyses outside of Seurat, such as differential expression analysis using 
  tools designed for bulk RNA-seq data.
 
