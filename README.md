@@ -99,6 +99,27 @@
 ![CD36WT_UMAP_LBL](https://github.com/Divya090597/Single-Cell/assets/156469276/1b32c5ae-38b1-4a54-9b9e-57121d340c57)
 
 **Step 10: Finding differentially expressed features (cluster biomarkers)**
+
+**Finding Cluster-Specific Markers**
+1. Finding Markers for Cluster 2:
+
+          we use the 'FindMarkers' function to find genes that are differentially expressed in cluster 2 compared to all other clusters.
+          The 'head' function displays the top 5 markers.
+2. Finding Markers that Distinguish Cluster 5 from Clusters 0 and 3:
+
+          we identify markers that distinguish cluster 5 from clusters 0 and 3.
+          The 'ident.1' parameter specifies the cluster of interest (5),
+          while 'ident.2' lists the clusters for comparison (0 and 3).
+3. Finding markers for every cluster compared to all remaining cells:
+
+          The ,FindAllMarkers' function finds markers for all clusters.
+          The 'only.pos' parameter ensures that only 'upregulated (positive)' markers are returned.
+4. Filtering and Selecting Top Markers:
+
+          Code groups markers by cluster and filters them to retain those with an average log2 fold-change greater than 1, indicating strong differential 
+          expression.
+6. Selecting the Top 10 Markers Per Cluster
+   
 <img width="367" alt="Vlnplot_features_ko" src="https://github.com/Divya090597/Single-Cell/assets/156469276/2e486d51-00de-4c68-b26b-de5077b00f96">
 <img width="367" alt="Vln_features_wt" src="https://github.com/Divya090597/Single-Cell/assets/156469276/5f030bd7-8454-4444-bbf8-795dce5548d8">
 
