@@ -12,6 +12,8 @@ install.packages("spatstat.data")
 install.packages("spatstat.geom")
 install.packages("spatstat.core")
 
+untar("~/Datasets/cd36ko/GSM5220548_RAW.tar", exdir = "GSM5220548_RAW.tar")
+
 # Reading the files manually
 barcodes_cd36ko <- read.delim("~/Datasets/cd36ko/GSM5220548_cd36ko_barcodes.tsv.gz", header = FALSE)
 features_cd36ko <- read.delim("~/Datasets/cd36ko/GSM5220548_cd36ko_features.tsv.gz", header = FALSE)
